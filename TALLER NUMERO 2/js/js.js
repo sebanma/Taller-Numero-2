@@ -12,30 +12,32 @@ window.onload = function() {
     
     }
     
-    //botón Empezar / Reiniciar
+    //botón Empezar / Continuar
     function activo (){   
          if (document.cron.boton1.value=="Empezar") { //botón en "Empezar"
             empezar() //ir  la función empezar
             }
-         else {  //Botón en "Reiniciar"
-            reiniciar()  //ir a la función reiniciar
+         else {  //Botón en continuar
+            continuar()  //ir a la función reiniciar
             }
          }
-    //botón pausa / continuar
+    //botón pausa
     function pausa (){ 
          if (marcha==0) { //con el boton en "continuar"
-            continuar() //ir a la función continuar
+            reiniciar() //ir a la función continuar
             }
          else {  //con el botón en "parar"
             parar() //ir a la funcion parar
             }
-         }
+        }
+
+
     //Botón 1: Estado empezar: Poner en marcha el crono
     function empezar() {
           emp=new Date() //fecha inicial (en el momento de pulsar)
           elcrono=setInterval(tiempo,10); //función del temporizador.
           marcha=1 //indicamos que se ha puesto en marcha.
-          document.cron.boton1.value="Reiniciar"; //Cambiar estado del botón
+          document.cron.boton1.value="Continuar"; //Cambiar estado del botón
           document.cron.boton2.disabled=false; //activar botón de pausa
           }
     //función del temporizador			
@@ -63,7 +65,6 @@ window.onload = function() {
     function parar() { 
          clearInterval(elcrono); //parar el crono
          marcha=0; //indicar que está parado.
-         document.cron.boton2.value="Continuar"; //cambiar el estado del botón
          }		 
     //Continuar una cuenta empezada y parada.
     function continuar() {
@@ -74,7 +75,7 @@ window.onload = function() {
          emp.setTime(emp3); //datos para nueva fecha inicial.
          elcrono=setInterval(tiempo,10); //activar temporizador
          marcha=1; //indicar que esta en marcha
-         document.cron.boton2.value="parar"; //Cambiar estado del botón
+    
          document.cron.boton1.disabled=false; //activar boton 1 si estuviera desactivado
          }
     //Volver al estado inicial
@@ -86,7 +87,6 @@ window.onload = function() {
                  //en cualquier caso volvemos a los valores iniciales
          cro=0; //tiempo transcurrido a cero
          visor.innerHTML = "0 00 00 00"; //visor a cero
-         document.cron.boton1.value="Empezar"; //estado inicial primer botón
-         document.cron.boton2.value="Parar"; //estado inicial segundo botón
+       
          document.cron.boton2.disabled=true;  //segundo botón desactivado	 
          }	
