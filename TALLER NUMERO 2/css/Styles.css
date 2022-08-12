@@ -3,13 +3,21 @@
     border: 5px #7c7bff double;
     width: 200px;
     text-align: center; 
-    background-color: rgb(214, 45, 107); 
+    background-color: rgb(28, 50, 216); 
     border-radius: 15px;
     }
     
     #cronometro [type=button]  { 
     margin: 10px; 
     font: normal 9pt arial;
-    width: 150px;
+    width: 100px;
+    height: 55px;
     }
     
+    #reloj  {
+     background-color: rgb(212, 144, 17); 
+     padding:50px;
+     text-align: center;
+    }
+    
+   

@@ -1,10 +1,12 @@
+//cuando la ventana carga se ejecuta esta funcion
 window.onload = function() {
-
+//del documento html se trae el documento que tiene el elemento en este dicho id.
     visor=document.getElementById("reloj"); //localizar pantalla del reloj
     //asociar eventos a botones: al pulsar el botón se activa su función.
     document.cron.boton1.onclick = activo; 
     document.cron.boton3.onclick = desactivo; 
     document.cron.boton2.onclick = pausa;
+    //Propiedades a los eventos
     document.cron.boton1.disabled=false;
     document.cron.boton2.disabled=true;
     //variables de inicio:
@@ -100,5 +102,5 @@ window.onload = function() {
          visor.innerHTML = "00 00 00"; //visor a cero
          document.cron.boton1.value="Empezar";
          document.cron.boton2.disabled=false;  //segundo botón desactivado	 
-         document.cron.boton1.disabled=false;
+         document.cron.boton1.disabled=false; //primer boton desactivado
          }	
