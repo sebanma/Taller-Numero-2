@@ -3,6 +3,7 @@ window.onload = function() {
     visor=document.getElementById("reloj"); //localizar pantalla del reloj
     //asociar eventos a botones: al pulsar el botón se activa su función.
     document.cron.boton1.onclick = activo; 
+    document.cron.boton3.onclick = desactivo; 
     document.cron.boton2.onclick = pausa;
     document.cron.boton1.disabled=false;
     document.cron.boton2.disabled=true;
@@ -18,9 +19,17 @@ window.onload = function() {
             empezar() //ir  la función empezar
             }
          else {  //Botón en continuar
-            continuar()  //ir a la función reiniciar
+            continuar()  //ir a la función continuar
             }
          }
+         function desactivo (){   
+            if (document.cron.boton1.value=="Reiniciar") { //botón en "Empezar"
+               empezar() //ir  la función empezar
+               }
+            else {  //Botón en continuar
+               reiniciar()  //ir a la función reiniciar
+               }
+            }
     //botón pausa
     function pausa (){ 
          if (marcha==0) { //con el boton en "continuar"
@@ -39,6 +48,7 @@ window.onload = function() {
           marcha=1 //indicamos que se ha puesto en marcha.
           document.cron.boton1.value="Continuar"; //Cambiar estado del botón
           document.cron.boton2.disabled=false; //activar botón de pausa
+          document.cron.boton1.disabled=true;
           }
     //función del temporizador			
     function tiempo() { 
@@ -53,18 +63,19 @@ window.onload = function() {
          cs=Math.round(cs); //redondear las centésimas
          sg=cr.getSeconds(); //segundos 
          mn=cr.getMinutes(); //minutos 
-         ho=cr.getHours()-1; //horas 
+    
             //poner siempre 2 cifras en los números		 
          if (cs<10) {cs="0"+cs;} 
          if (sg<10) {sg="0"+sg;} 
          if (mn<10) {mn="0"+mn;} 
             //llevar resultado al visor.		 
-         visor.innerHTML=ho+" "+mn+" "+sg+" "+cs; 
+         visor.innerHTML=mn+" "+sg+" "+cs; 
          }
     //parar el cronómetro
     function parar() { 
          clearInterval(elcrono); //parar el crono
          marcha=0; //indicar que está parado.
+         document.cron.boton1.disabled=false;
          }		 
     //Continuar una cuenta empezada y parada.
     function continuar() {
@@ -75,8 +86,8 @@ window.onload = function() {
          emp.setTime(emp3); //datos para nueva fecha inicial.
          elcrono=setInterval(tiempo,10); //activar temporizador
          marcha=1; //indicar que esta en marcha
-    
-         document.cron.boton1.disabled=false; //activar boton 1 si estuviera desactivado
+         
+         document.cron.boton1.disabled=true; //activar boton 1 si estuviera desactivado
          }
     //Volver al estado inicial
     function reiniciar() {
@@ -86,7 +97,8 @@ window.onload = function() {
              }
                  //en cualquier caso volvemos a los valores iniciales
          cro=0; //tiempo transcurrido a cero
-         visor.innerHTML = "0 00 00 00"; //visor a cero
-       
-         document.cron.boton2.disabled=true;  //segundo botón desactivado	 
+         visor.innerHTML = "00 00 00"; //visor a cero
+         document.cron.boton1.value="Empezar";
+         document.cron.boton2.disabled=false;  //segundo botón desactivado	 
+         document.cron.boton1.disabled=false;
          }	
