@@ -22,5 +22,8 @@
     }
     
     #titulo {
-        text-align: left;   
+        text-align: left; 
+        background-color: rgb(221, 129, 24); 
+        width: 500px;
+  
     }
